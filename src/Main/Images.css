@@ -1,0 +1,32 @@
+.posts {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.post {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  max-width: 30vw;
+  min-width: 400px;
+  height: 400px;
+  text-align: center;
+  background-color: rgb(14, 128, 154);
+  border-radius: 25px;
+  margin: 15px;
+}
+
+img {
+  max-width: 300px;
+  max-height: 300px;
+  align-self: center;
+  margin-top: 15px;
+}
+
+p {
+  text-align: center;
+  font-size: 35px;
+  margin: 0;
+}

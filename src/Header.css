@@ -1,0 +1,15 @@
+header {
+  width: 100%;
+  background: rgb(14, 128, 154);
+  height: 50px;
+  margin-bottom: 15px;
+  text-align: center;
+  font-size: 40px;
+  display: flex;
+  justify-content: space-around;
+}
+
+a:-webkit-any-link{
+    color: black;
+    text-decoration: none;
+}
