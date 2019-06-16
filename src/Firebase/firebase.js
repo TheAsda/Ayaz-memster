@@ -5,22 +5,17 @@ const config = {
   authDomain: 'ayazmemster.firebaseapp.com',
   databaseURL: 'https://ayazmemster.firebaseio.com',
   projectId: 'ayazmemster',
-  storageBucket: '',
+  storageBucket: 'ayazmemster.appspot.com',
   messagingSenderId: '748903039219',
   appId: '1:748903039219:web:1646329bf7b4631c',
 };
 
 class Firebase {
   constructor() {
-    firebase.initializeApp({
-      apiKey: 'AIzaSyAyyqLME_QyoliyURhsVjE_ykkxTOgNBoQ',
-      authDomain: 'ayazmemster.firebaseapp.com',
-      projectId: 'ayazmemster',
-    });
-
+    firebase.initializeApp(config);
     this.db = firebase.firestore();
   }
-  
+
   getImages() {
     let database = this.db;
     return new Promise(function(resolve, reject) {

@@ -1,0 +1,21 @@
+header {
+  width: 100%;
+  height: 50px;
+  margin-bottom: 15px;
+  text-align: center;
+  font-size: 40px;
+  display: flex;
+}
+
+a:-webkit-any-link {
+  color: white;
+  text-decoration: none;
+  flex-grow: 1;
+  flex-basis: 200px;
+}
+h1 {
+  font-size: 40px;
+  margin: 0;
+  min-width: 251px;
+  color: white;
+}
