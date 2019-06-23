@@ -3,15 +3,22 @@ body {
   background-repeat: no-repeat;
   background-size: 100% 100%;
 }
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
   padding: 0;
   overflow: hidden;
 }
 body {
-  overflow: auto; /* добавить полосу прокрутки */ 
+  overflow: auto; /* добавить полосу прокрутки */
 }
 #root {
   min-height: 100%;
+}
+
+::-webkit-scrollbar {
+  /* chrome based */
+  width: 0px; /* ширина scrollbar'a */
+  background: transparent; /* опционально */
 }

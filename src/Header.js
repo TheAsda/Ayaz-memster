@@ -7,12 +7,9 @@ export default class Header extends React.Component {
     return (
       <header>
         <h1>Ayaz-Memster</h1>
-        <Link to="/">
-          Home
-        </Link>
-        <Link to="/constructor">
-          Constructor
-        </Link>
+        <Link to="/">Home</Link>
+        <Link to="/constructor">Constructor</Link>
+        <Link to="/add">Add</Link>
       </header>
     );
   }

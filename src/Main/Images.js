@@ -15,7 +15,7 @@ export default class Images extends React.Component {
       for (let img in this.props.data) {
         res.push(
           <div className="post">
-            <img crossOrigin="anonymous" src={this.props.data[img]} onClick={() => this.setCookie(this.props.data[img])} style={{ pointerEvents: 'all' }} />
+            <img crossOrigin="anonymous" src={this.props.data[img]} onClick={() => this.setCookie(this.props.data[img], img)} style={{ pointerEvents: 'all' }} />
             <h3>{img}</h3>
           </div>
         );
@@ -24,7 +24,8 @@ export default class Images extends React.Component {
     }
     return;
   }
-  setCookie(img) {
+  setCookie(img, name) {
     cookies.set('current', img);
+    cookies.set('title', name);
   }
 }

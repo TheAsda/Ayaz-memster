@@ -1,7 +1,8 @@
 import React from 'react';
 import Cookies from 'universal-cookie';
 import { Stage, Layer, Image, Text } from 'react-konva';
-import '../css/Error.css'
+import '../css/Error.css';
+import '../css/Constructor.css';
 
 const cookies = new Cookies();
 
@@ -99,13 +100,11 @@ class Constructor extends React.Component {
       );
     else
       return (
-        <div>
-          <textarea onKeyUp={this.setTop} ref={this.top}>
-            Top Text
-          </textarea>
-          <textarea onKeyUp={this.setBottom} ref={this.bottom}>
-            Bottom Text
-          </textarea>
+        <div class="constructor">
+          <input onKeyUp={this.setTop} ref={this.top}>
+          </input>
+          <input onKeyUp={this.setBottom} ref={this.bottom}>
+          </input>
           <Stage width={500} height={500}>
             <Layer>
               <URLImage src={currentPic} data={this} />

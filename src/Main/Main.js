@@ -1,9 +1,7 @@
 import React from 'react';
 import Images from './Images';
-import Firebase from '../Firebase/firebase';
+import fb from '../Firebase/firebase';
 import '../css/Error.css';
-
-const fb = new Firebase();
 
 export default class Main extends React.Component {
   constructor() {

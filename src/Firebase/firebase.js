@@ -29,6 +29,17 @@ class Firebase {
         });
     });
   }
+
+  sendImages(name, link) {
+    console.log(name, link);
+    this.db
+      .collection('Add')
+      .doc('main')
+      .set({
+        name: name,
+        link: link,
+      });
+  }
 }
 
-export default Firebase;
+export default new Firebase();
