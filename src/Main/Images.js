@@ -10,8 +10,10 @@ class Images extends React.Component {
     this.state = { cur: '' };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     const data = Store.getState();
+    console.log(data.current.name);
+    if (data.current.name !== '') document.getElementById(data.current.name).parentElement.classList.add('current');
     this.setState({ cur: data.current.name });
   }
 
@@ -21,15 +23,15 @@ class Images extends React.Component {
       let res = [];
       for (let img in data.images) {
         res.push(
-          <div className="post">
-            <img crossOrigin="anonymous" src={data.images[img]} onClick={() => this.setCurrent(data.images[img], img)} style={{ pointerEvents: 'all' }} />
+          <div className="post" onClick={() => this.setCurrent(data.images[img], img)}>
+            <img crossOrigin="anonymous" id={img} src={data.images[img]} />
             <h3>{img}</h3>
           </div>
         );
       }
       return (
         <div className="posts">
-          <p class="current">{this.state.cur !== '' ? 'Current image: ' + this.state.cur : ''}</p>
+          <p class="currentText">{this.state.cur !== '' ? 'Current image: ' + this.state.cur : "You'd better choose a picture"}</p>
           {res}
         </div>
       );
@@ -44,6 +46,9 @@ class Images extends React.Component {
   setCurrent(img, name) {
     Store.dispatch(setcur(name, img));
     this.setState({ cur: name });
+    const items = document.getElementsByClassName('current');
+    if (items[0] !== undefined) items[0].classList.remove('current');
+    document.getElementById(name).parentElement.classList.add('current');
   }
 }
 

@@ -12,12 +12,15 @@ class Add extends React.Component {
   }
   render() {
     return (
-      <div className="add">
-        <h4>Title</h4>
-        <input type="text" ref={this.name} />
-        <h4>Imgur link</h4>
-        <input type="text" ref={this.link} />
-        <button onClick={this.send}>Send</button>
+      <div>
+        <div className="add">
+          <h4>Title</h4>
+          <input type="text" ref={this.name} />
+          <h4>Imgur link</h4>
+          <input type="text" ref={this.link} />
+          <br />
+          <button onClick={this.send}>Send</button>
+        </div>
         {this.state.result}
       </div>
     );
