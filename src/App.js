@@ -5,7 +5,7 @@ import Main from './Main/Main';
 import Constructor from './Constructor/Constructor';
 import Add from './Add/Add';
 import './css/App.css';
-import fb from './Firebase/firebase';
+import { fb } from './Firebase/firebase';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 import { history, Store } from './redux/configureStore';

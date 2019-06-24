@@ -23,23 +23,40 @@ class Firebase {
         .collection('Images')
         .get()
         .then(querySnapshot => {
+          let data = [];
           querySnapshot.forEach(doc => {
-            resolve(doc.data());
+            let file = doc.data();
+            for (let title in file) data[title] = file[title];
           });
+          resolve(data);
         });
     });
   }
 
   sendImages(name, link) {
-    console.log(name, link);
-    this.db
-      .collection('Add')
-      .doc('main')
-      .set({
-        name: name,
-        link: link,
-      });
+    const regex = /https?:\/\/i?.?imgur.com\/\S+/;
+    if (regex.test(link)) {
+      const itest = /https?:\/\/i.imgur.com/;
+      if (!itest.test(link)) link = link.replace('imgur', 'i.imgur');
+      const typeTest = /https?:\/\/i?.?imgur.com\/\S+\./;
+      console.log(typeTest.test(link));
+      if (!typeTest.test(link)) link += '.jpg';
+      else link = link.replace(/png/, 'jpg');
+      console.log(link);
+      let data = {};
+      data[name] = link;
+      this.db
+        .collection('Images')
+        .doc()
+        .set(data)
+        .catch(err => console.log(err.name));
+      console.log('gj');
+      return true;
+    } else {
+      console.log('bj');
+      return false;
+    }
   }
 }
 
-export default new Firebase();
+export const fb = new Firebase();
