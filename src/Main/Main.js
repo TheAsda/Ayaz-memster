@@ -1,33 +1,15 @@
 import React from 'react';
 import Images from './Images';
-import fb from '../Firebase/firebase';
 import '../css/Error.css';
 
-export default class Main extends React.Component {
-  constructor() {
-    super();
-    this.state = { images: {} };
-  }
-
-  componentWillMount() {
-    fb.getImages().then(res => {
-      this.setState({ images: res });
-    });
-  }
-
+class Main extends React.Component {
   render() {
-    if (this.state.images != {})
-      return (
-        <div>
-          <Images data={this.state.images} />
-        </div>
-      );
-    else
-      return (
-        <div className="error">
-          <h2>Error</h2>
-          <p>There was an error during the loading...</p>
-        </div>
-      );
+    return (
+      <div>
+        <Images />
+      </div>
+    );
   }
 }
+
+export default Main;

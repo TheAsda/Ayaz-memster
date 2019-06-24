@@ -1,12 +1,11 @@
 import React from 'react';
 import '../css/Add.css';
+import Connector from '../redux/connect';
 
-export default class Add extends React.Component {
-
+class Add extends React.Component {
   render() {
-    return (
-      <div class="add">
-      </div>
-    );
+    return <div class="add" />;
   }
 }
+
+export default Add;

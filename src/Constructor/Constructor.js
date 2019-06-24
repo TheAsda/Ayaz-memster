@@ -1,10 +1,8 @@
 import React from 'react';
-import Cookies from 'universal-cookie';
 import { Stage, Layer, Image, Text } from 'react-konva';
 import '../css/Error.css';
 import '../css/Constructor.css';
-
-const cookies = new Cookies();
+import { Store } from '../redux/configureStore';
 
 class URLImage extends React.Component {
   state = {
@@ -90,8 +88,9 @@ class Constructor extends React.Component {
   };
 
   render() {
-    const currentPic = cookies.get('current');
-    if (currentPic == undefined)
+    const data = Store.getState();
+    const currentPic = data.current.img;
+    if (currentPic == '')
       return (
         <div className="error">
           <h2>Error</h2>
@@ -101,10 +100,8 @@ class Constructor extends React.Component {
     else
       return (
         <div class="constructor">
-          <input onKeyUp={this.setTop} ref={this.top}>
-          </input>
-          <input onKeyUp={this.setBottom} ref={this.bottom}>
-          </input>
+          <input onKeyUp={this.setTop} ref={this.top} />
+          <input onKeyUp={this.setBottom} ref={this.bottom} />
           <Stage width={500} height={500}>
             <Layer>
               <URLImage src={currentPic} data={this} />

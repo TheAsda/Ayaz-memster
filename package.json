@@ -3,14 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "connected-react-router": "^6.4.0",
     "firebase": "^6.1.1",
     "konva": "^3.3.3",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-konva": "^16.8.7-2",
+    "react-redux": "^7.1.0",
     "react-router": "^5.0.1",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
+    "redux": "^4.0.1",
     "universal-cookie": "^4.0.0",
     "use-image": "^1.0.3"
   },

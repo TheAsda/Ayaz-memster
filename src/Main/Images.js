@@ -1,31 +1,50 @@
 import React from 'react';
 import './Images.css';
-import Cookie from 'universal-cookie';
+import { Store } from '../redux/configureStore';
+import { setcur } from '../redux/actions';
 
-const cookies = new Cookie();
-
-export default class Images extends React.Component {
+class Images extends React.Component {
   constructor() {
     super();
-    this.setCookie = this.setCookie.bind(this);
+    this.setCurrent = this.setCurrent.bind(this);
+    this.state = { cur: '' };
   }
+
+  componentWillMount() {
+    const data = Store.getState();
+    this.setState({ cur: data.current.name });
+  }
+
   render() {
-    if (this.props.data) {
+    const data = Store.getState();
+    if (data.images !== {}) {
       let res = [];
-      for (let img in this.props.data) {
+      for (let img in data.images) {
         res.push(
           <div className="post">
-            <img crossOrigin="anonymous" src={this.props.data[img]} onClick={() => this.setCookie(this.props.data[img], img)} style={{ pointerEvents: 'all' }} />
+            <img crossOrigin="anonymous" src={data.images[img]} onClick={() => this.setCurrent(data.images[img], img)} style={{ pointerEvents: 'all' }} />
             <h3>{img}</h3>
           </div>
         );
       }
-      return <div className="posts">{res}</div>;
-    }
-    return;
+      return (
+        <div className="posts">
+          <p class="current">{this.state.cur !== '' ? 'Current image: ' + this.state.cur : ''}</p>
+          {res}
+        </div>
+      );
+    } else
+      return (
+        <div className="error">
+          <h2>Error</h2>
+          <p>There was an error during loading...</p>
+        </div>
+      );
   }
-  setCookie(img, name) {
-    cookies.set('current', img);
-    cookies.set('title', name);
+  setCurrent(img, name) {
+    Store.dispatch(setcur(name, img));
+    this.setState({ cur: name });
   }
 }
+
+export default Images;
