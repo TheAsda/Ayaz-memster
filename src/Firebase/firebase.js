@@ -33,6 +33,7 @@ class Firebase {
   }
 
   sendImages(name, link) {
+    if (name.length < 1) return false;
     const regex = /https?:\/\/i?.?imgur.com\/\S+/;
     if (regex.test(link)) {
       const itest = /https?:\/\/i.imgur.com/;

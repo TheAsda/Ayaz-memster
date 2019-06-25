@@ -94,7 +94,7 @@ class Constructor extends React.Component {
   render() {
     const data = Store.getState();
     const currentPic = data.current.img;
-    if (currentPic == '')
+    if (currentPic === '')
       return (
         <div className="error">
           <h2>Error</h2>

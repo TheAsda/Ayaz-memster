@@ -5,6 +5,7 @@ const imagesReducer = (state = {}, action) => {
   switch (action.type) {
     case 'SETALL':
       state = action.data;
+      return state;
     default:
       return state;
   }

@@ -24,14 +24,14 @@ class Images extends React.Component {
       for (let img in data.images) {
         res.push(
           <div className="post" onClick={() => this.setCurrent(data.images[img], img)}>
-            <img crossOrigin="anonymous" id={img} src={data.images[img]} />
+            <img crossOrigin="anonymous" id={img} src={data.images[img]} alt={img} />
             <h3>{img}</h3>
           </div>
         );
       }
       return (
         <div className="posts">
-          <p class="currentText">{this.state.cur !== '' ? 'Current image: ' + this.state.cur : "You'd better choose a picture"}</p>
+          <p className="currentText">{this.state.cur !== '' ? 'Current image: ' + this.state.cur : "You'd better choose a picture"}</p>
           {res}
         </div>
       );
