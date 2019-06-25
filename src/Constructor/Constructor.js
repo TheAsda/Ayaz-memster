@@ -21,7 +21,6 @@ class URLImage extends React.Component {
     const image = new window.Image();
     image.crossOrigin = 'Anonymous';
     image.src = this.props.src;
-    console.log(image);
     image.onload = () => {
       var scale = Math.min(500 / image.width, 500 / image.height);
       this.setState({

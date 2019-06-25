@@ -39,10 +39,8 @@ class Firebase {
       const itest = /https?:\/\/i.imgur.com/;
       if (!itest.test(link)) link = link.replace('imgur', 'i.imgur');
       const typeTest = /https?:\/\/i?.?imgur.com\/\S+\./;
-      console.log(typeTest.test(link));
       if (!typeTest.test(link)) link += '.jpg';
       else link = link.replace(/png/, 'jpg');
-      console.log(link);
       let data = {};
       data[name] = link;
       this.db
