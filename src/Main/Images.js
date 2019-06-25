@@ -12,7 +12,6 @@ class Images extends React.Component {
 
   componentDidMount() {
     const data = Store.getState();
-    console.log(data.current.name);
     if (data.current.name !== '') document.getElementById(data.current.name).parentElement.classList.add('current');
     this.setState({ cur: data.current.name });
   }
