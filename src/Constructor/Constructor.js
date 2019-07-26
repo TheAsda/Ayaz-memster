@@ -3,14 +3,14 @@ import { Stage, Layer, Image, Text } from 'react-konva';
 import '../css/Error.css';
 import '../css/Constructor.css';
 import { Store } from '../redux/configureStore';
-
+let size = 500;
 class URLImage extends React.Component {
   state = {
     image: null,
     width: 0,
     height: 0,
     x: 0,
-    y: 0,
+    y: 0
   };
 
   componentDidMount() {
@@ -18,29 +18,32 @@ class URLImage extends React.Component {
   }
 
   loadImage() {
+    if (window.outerWidth < 500) size = window.outerWidth;
+    else size = 500;
+    console.log(size);
     const image = new window.Image();
     image.crossOrigin = 'Anonymous';
     image.src = this.props.src;
     image.onload = () => {
-      var scale = Math.min(500 / image.width, 500 / image.height);
+      var scale = Math.min(size / image.width, size / image.height);
       this.setState({
         image: image,
-        x: 250 - (image.width / 2) * scale,
-        y: 250 - (image.height / 2) * scale,
+        x: size/2 - (image.width / 2) * scale,
+        y: size/2 - (image.height / 2) * scale,
         width: image.width * scale,
-        height: image.height * scale,
+        height: image.height * scale
       });
       this.props.data.setState({
         topPos: {
           xLen: this.state.width,
           x: this.state.x,
-          y: this.state.y,
+          y: this.state.y
         },
         botPos: {
           xLen: this.state.width,
           x: this.state.x,
-          y: this.state.height,
-        },
+          y: this.state.height
+        }
       });
     };
   }
@@ -81,13 +84,13 @@ class Constructor extends React.Component {
     topPos: {
       x: 0,
       y: 0,
-      xLen: 0,
+      xLen: 0
     },
     botPos: {
       x: 0,
       y: 0,
-      xLen: 0,
-    },
+      xLen: 0
+    }
   };
 
   render() {
@@ -104,7 +107,7 @@ class Constructor extends React.Component {
       return (
         <div className="constructor">
           <input onChange={this.setTop} ref={this.top} className="memeText" />
-          <Stage width={500} height={500}>
+          <Stage width={size} height={size}>
             <Layer style={{}}>
               <URLImage src={currentPic} data={this} />
               <Text
@@ -157,20 +160,20 @@ class Constructor extends React.Component {
         botPos: {
           x: this.state.botPos.x,
           y: this.state.botPos.y - 35,
-          xLen: this.state.botPos.xLen,
+          xLen: this.state.botPos.xLen
         },
         lines: this.state.lines + 1,
-        bottomText: this.bottom.current.value,
+        bottomText: this.bottom.current.value
       });
     } else if (this.bottomText.textArr.length < this.state.lines) {
       this.setState({
         botPos: {
           x: this.state.botPos.x,
           y: this.state.botPos.y + 35 * (this.state.lines - this.bottomText.textArr.length),
-          xLen: this.state.botPos.xLen,
+          xLen: this.state.botPos.xLen
         },
         lines: this.state.lines - (this.state.lines - this.bottomText.textArr.length),
-        bottomText: this.bottom.current.value,
+        bottomText: this.bottom.current.value
       });
     } else this.setState({ bottomText: this.bottom.current.value });
   }

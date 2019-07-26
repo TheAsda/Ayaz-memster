@@ -1,6 +1,7 @@
 body {
-  background-image: url('https://novoboi.ru/download_img.php?dimg=11889&raz=1920x1080');
+  background-image: url('./background.png');
   background-repeat: no-repeat;
+  background-attachment: fixed;
   background-size: 100% 100%;
 }
 html,
@@ -8,7 +9,6 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
-  overflow: hidden;
 }
 body {
   overflow: auto; /* добавить полосу прокрутки */

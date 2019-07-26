@@ -5,6 +5,8 @@ header {
   text-align: center;
   font-size: 40px;
   display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
 
 a:-webkit-any-link {
@@ -13,9 +15,64 @@ a:-webkit-any-link {
   flex-grow: 1;
   flex-basis: 200px;
 }
+
 h1 {
   font-size: 40px;
   margin: 0;
   min-width: 251px;
   color: white;
+}
+
+.links {
+  flex-grow: 1;
+  display: flex;
+}
+
+.navIcon {
+  background-image: url('./menu.png');
+  background-size: 40px 40px;
+  background-repeat: no-repeat;
+  position: relative;
+  background-position: 50% 50%;
+  width: 50px;
+  height: 50px;
+  display: none;
+}
+
+@media screen and (max-width: 800px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  header{
+    justify-content: space-between;
+  }
+
+  .links {
+    position: absolute;
+    right: 0;
+    height: 92vh;
+    top: 8vh;
+    background-color: rgba(13, 29, 74, 0.95);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 70%;
+    transform: translateX(100%);
+    transition: transform 0.3s ease-in;
+  }
+
+  .links a {
+    width: 100%;
+    padding-top: 25%;
+  }
+
+  .navIcon {
+    display: block;
+  }
+}
+
+.active {
+  transform: translateX(0%);
 }

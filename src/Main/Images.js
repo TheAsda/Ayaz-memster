@@ -30,7 +30,9 @@ class Images extends React.Component {
       }
       return (
         <div className="posts">
-          <p className="currentText">{this.state.cur !== '' ? 'Current image: ' + this.state.cur : "You'd better choose a picture"}</p>
+          <p className="currentText">
+            {this.state.cur !== '' ? 'Current image: ' + this.state.cur : "You didn't choose a photo"}
+          </p>
           {res}
         </div>
       );

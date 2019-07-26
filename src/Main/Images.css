@@ -40,8 +40,22 @@ h3 {
   margin: 20px;
   margin-top: 0;
   margin-right: 50px;
+  font-size: 27px;
 }
 
+@media screen and (max-width: 800px) {
+  .currentText {
+    text-align: center;
+  }
+  .post {
+    margin: 5px;
+    min-width: 99%;
+  }
+  img{
+    max-width: 98%;
+    max-height: 98vw;
+  }
+}
 .current {
   background-color: rgba(209, 23, 23, 0.45);
 }
