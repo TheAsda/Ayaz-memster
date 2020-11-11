@@ -1,7 +1,8 @@
-import { createEffect, createEvent, createStore } from 'effector';
+import { createEffect, createEvent, createStore, forward } from 'effector';
 import { Meme } from '../types';
 import { collection } from '../firebase/firebase';
 import { firestore } from 'firebase';
+import { createGate } from 'effector-react';
 
 type MemesStore = Meme[];
 
@@ -51,4 +52,11 @@ memesStore.on(addMeme.doneData, (state, value) => {
   return [value, ...state];
 });
 
-export { memesStore, addMeme, fetchMemes };
+const AppGate = createGate();
+
+forward({
+  from: AppGate.open,
+  to: fetchMemes,
+});
+
+export { AppGate, memesStore, addMeme, fetchMemes };
