@@ -1,13 +1,13 @@
-import {
-  createEffect,
-  createEvent,
-  createStore,
-  forward,
-  sample,
-} from 'effector';
-import { FirebaseMeme, Meme, MemesStore } from '../types';
+import { createEffect, createEvent, createStore } from 'effector';
+import { Meme } from '../types';
 import { collection } from '../firebase/firebase';
 import { firestore } from 'firebase';
+
+type MemesStore = Meme[];
+
+interface FirebaseMeme extends Meme {
+  timestamp: firebase.firestore.Timestamp;
+}
 
 const memesStore = createStore<MemesStore>([]);
 

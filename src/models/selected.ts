@@ -1,5 +1,9 @@
 import { createEvent, createStore } from 'effector';
-import { Meme, SelectedStore } from '../types';
+import { Meme } from '../types';
+
+interface SelectedStore {
+  selected?: Meme;
+}
 
 const selectedStore = createStore<SelectedStore>({});
 
