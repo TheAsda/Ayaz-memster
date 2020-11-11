@@ -1,7 +1,7 @@
 import { createEffect, createEvent, createStore, forward } from 'effector';
 import { Meme } from '../types';
 import { collection } from '../firebase/firebase';
-import { firestore } from 'firebase';
+import firebase from 'firebase';
 import { createGate } from 'effector-react';
 
 type MemesStore = Meme[];
@@ -18,23 +18,21 @@ collection.onSnapshot((snapshot) => {
   updateMemes(data);
 });
 
-const addMeme = createEffect<(meme: Meme) => Promise<FirebaseMeme>>(
-  async (meme) => {
-    try {
-      const doc = await collection.add({
-        ...meme,
-        timestamp: firestore.Timestamp.now(),
-      });
-      return Promise.resolve((await doc.get()).data() as FirebaseMeme);
-    } catch {
-      return Promise.reject();
-    }
+const addMeme = createEffect(async (meme: Meme) => {
+  try {
+    const doc = await collection.add({
+      ...meme,
+      timestamp: firebase.firestore.Timestamp.now(),
+    });
+    return Promise.resolve((await doc.get()).data() as FirebaseMeme);
+  } catch {
+    return Promise.reject('Cannot add meme ot firebase');
   }
-);
+});
 
 const fetchMemes = createEffect<() => Promise<Meme[]>>(async () => {
   try {
-    const data = (await collection.orderBy('timestamp').get()).docs.map(
+    const data = (await collection.orderBy('timestamp', 'desc').get()).docs.map(
       (item) => item.data() as FirebaseMeme
     );
 
