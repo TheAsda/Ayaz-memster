@@ -7,6 +7,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Header } from './Header';
 import { MemesGrid } from './Homepage/MemesGrid';
 import { AppGate } from './models/memes';
+import { MemeForm } from './AddPage/MemeForm';
 
 // import Main from './Main/Main';
 // import Constructor from './Constructor/Constructor';
@@ -22,7 +23,7 @@ const App = () => {
         <Switch>
           <Route exact path="/" component={MemesGrid} />
           <Route path="/constructor" component={() => <div />} />
-          <Route path="/add" component={() => <div />} />
+          <Route path="/add" component={MemeForm} />
         </Switch>
       </div>
     </BrowserRouter>
