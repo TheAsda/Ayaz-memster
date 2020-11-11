@@ -1,42 +1,33 @@
-import { Heading } from '@chakra-ui/core';
-import { Link } from 'react-router-dom';
 import React from 'react';
-
-// import './css/Header.css';
-
-// export default class Header extends React.Component {
-//   state = {
-//     active: false,
-//   };
-//   render() {
-//     return (
-//       <header>
-//         <h1>Ayaz-Memster</h1>
-//         <div
-//           className="navIcon"
-//           onClick={() => {
-//             this.setState({ active: !this.state.active });
-//           }}
-//         />
-//         <div className={this.state.active ? 'links active' : 'links'}>
-//           <Link to="/">Home</Link>
-//           <Link to="/constructor">Constructor</Link>
-//           <Link to="/add">Add</Link>
-//         </div>
-//       </header>
-//     );
-//   }
-// }
+import { Link } from 'react-router-dom';
+import { Nav, Navbar } from 'rsuite';
 
 const Header = () => {
   return (
-    <div>
-      <Link to="/">
-        <Heading>Ayaz-Memster</Heading>
-      </Link>
-      <Link to="/constructor">Constructor</Link>
-      <Link to="/add">Add image</Link>
-    </div>
+    <Navbar>
+      <Navbar.Header>
+        <Link
+          to="/"
+          style={{
+            padding: '18px 20px',
+            display: 'inline-block',
+            fontWeight: 'bold',
+          }}
+        >
+          Ayaz-Memster
+        </Link>
+      </Navbar.Header>
+      <Navbar.Body>
+        <Nav>
+          <Nav.Item>
+            <Link to="/constructor">Constructor</Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Link to="/add">Add image</Link>
+          </Nav.Item>
+        </Nav>
+      </Navbar.Body>
+    </Navbar>
   );
 };
 

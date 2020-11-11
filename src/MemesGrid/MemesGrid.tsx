@@ -1,30 +1,33 @@
 import { useStore } from 'effector-react';
 import React from 'react';
 import { memesStore } from '../models/memes';
-import { Flex, Grid, Heading, Image } from '@chakra-ui/core';
+import { FlexboxGrid, Grid } from 'rsuite';
 
 const MemesGrid = () => {
   const memes = useStore(memesStore);
 
   return (
-    <Flex flexWrap="wrap" justify="flex-start" direction="row">
+    <FlexboxGrid flexWrap="wrap" justify="start" direction="row">
       {memes.map((item, i) => {
         return (
-          <Flex key={i} direction="column" alignItems="center">
-            <Image
+          <FlexboxGrid.Item style={{ flex: '1 0 25%' }} key={i}>
+            <img
               src={item.imageUrl}
               alt={item.title}
-              size="250px"
-              objectFit="contain"
               style={{
                 margin: 20,
+                objectFit: 'contain',
+                height: 300,
+                minWidth: 300,
               }}
             />
-            <Heading>{item.title}</Heading>
-          </Flex>
+            <FlexboxGrid display="flex" justifyContent="center" bg="">
+              <figcaption>{item.title}</figcaption>
+            </FlexboxGrid>
+          </FlexboxGrid.Item>
         );
       })}
-    </Flex>
+    </FlexboxGrid>
   );
 };
 

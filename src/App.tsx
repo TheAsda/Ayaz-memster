@@ -8,6 +8,7 @@ import { AppGate } from './models/memes';
 // import Constructor from './Constructor/Constructor';
 // import Add from './Add/Add';
 // import './css/App.css';
+import 'rsuite/dist/styles/rsuite-default.css';
 
 const App = () => {
   useGate(AppGate);
@@ -15,7 +16,9 @@ const App = () => {
   return (
     <BrowserRouter>
       <Header />
-      <MemesGrid />
+      <div style={{ margin: '0 20%' }}>
+        <MemesGrid />
+      </div>
       {/* <Switch ref={this.main}>
                 <Route exact path="/" component={Main} />
                 <Route path="/constructor" component={Constructor} />
