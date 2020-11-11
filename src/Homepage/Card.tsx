@@ -20,6 +20,7 @@ const Card = ({ meme, selected }: CardProps) => {
       }}
     >
       <div
+        id={meme.title}
         style={{
           display: 'grid',
           gridTemplateColumns: '100%',

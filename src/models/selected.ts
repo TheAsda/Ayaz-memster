@@ -7,18 +7,19 @@ interface SelectedStore {
 
 const selectedStore = createStore<SelectedStore>({});
 
-const toggleSelected = createEvent<Meme>();
+const toggleSelected = createEvent<Meme | undefined>();
 
 selectedStore.on(toggleSelected, (state, value) => {
   if (
-    value.imageUrl === state.selected?.imageUrl &&
-    value.title === state.selected?.title
+    value === undefined ||
+    (value.imageUrl === state.selected?.imageUrl &&
+      value.title === state.selected?.title)
   ) {
     return {
       selected: undefined,
     };
   }
-  
+
   return {
     selected: value,
   };
