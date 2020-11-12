@@ -17,7 +17,7 @@
     "use-image": "^1.0.6"
   },
   "scripts": {
-    "start": "npm i serve && serve -l $PATH ./dist",
+    "start": "npm i serve && serve ./dist",
     "dev": "parcel ./public/index.html",
     "build": "parcel build ./public/index.html --no-source-maps"
   },
