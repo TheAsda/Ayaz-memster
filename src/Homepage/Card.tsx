@@ -13,10 +13,11 @@ const Card = ({ meme, selected }: CardProps) => {
     <FlexboxGrid.Item
       style={{
         flex: '1 0 300px',
-        border: '1px solid black',
         width: 240,
         borderRadius: 10,
         transform: selected ? 'scale(1.1)' : undefined,
+        backgroundColor: '#F7F7FA',
+        boxShadow: '0 0 10px rgba(0,0,0,0.5)'
       }}
     >
       <div
