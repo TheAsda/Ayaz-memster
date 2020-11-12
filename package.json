@@ -17,7 +17,8 @@
     "use-image": "^1.0.6"
   },
   "scripts": {
-    "start": "parcel ./public/index.html"
+    "start": "parcel ./public/index.html",
+    "build": "parcel build ./public/index.html --no-source-maps"
   },
   "browserslist": {
     "production": [
