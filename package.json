@@ -17,9 +17,9 @@
     "use-image": "^1.0.6"
   },
   "scripts": {
-    "start": "parcel ./public/index.html",
+    "dev": "parcel ./public/index.html",
     "build": "parcel build ./public/index.html --no-source-maps",
-    "serve": "npm i serve && serve -l 80 ./dist"
+    "start": "npm i serve && serve -l 80 ./dist"
   },
   "browserslist": {
     "production": [
