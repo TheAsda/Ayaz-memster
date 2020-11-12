@@ -25,6 +25,7 @@ const model = Schema.Model({
 
 const MemeForm = () => {
   const [state, setState] = useState<Meme>({ imageUrl: '', title: '' });
+  const [loading, setLoading] = useState<boolean>(false);
 
   return (
     <Form
@@ -34,9 +35,16 @@ const MemeForm = () => {
       }}
       onSubmit={(status) => {
         if (status === true) {
+          setLoading(true);
           addMeme(state)
-            .then(() => Alert.success('Meme added'))
-            .catch((err) => Alert.error(err));
+            .then(() => {
+              setLoading(false);
+              Alert.success('Meme added');
+            })
+            .catch((err) => {
+              setLoading(false);
+              Alert.error(err);
+            });
         }
       }}
     >
@@ -50,7 +58,7 @@ const MemeForm = () => {
       </FormGroup>
       <FormGroup>
         <ButtonToolbar>
-          <Button appearance="primary" type="submit">
+          <Button appearance="primary" type="submit" loading={loading}>
             Submit
           </Button>
           <Button appearance="default" type="reset">

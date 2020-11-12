@@ -5,6 +5,7 @@ import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import { AddPage } from './AddPage/AddPage';
+import { ConstructorPage } from './ConstructorPage/ConstructorPage';
 import { Header } from './Header';
 import { MemesGrid } from './Homepage/MemesGrid';
 import { AppGate } from './models/memes';
@@ -18,7 +19,7 @@ const App = () => {
       <div style={{ margin: '0 15%' }}>
         <Switch>
           <Route exact path="/" component={MemesGrid} />
-          <Route path="/constructor" component={() => <div />} />
+          <Route path="/constructor" component={ConstructorPage} />
           <Route path="/add" component={AddPage} />
         </Switch>
       </div>
