@@ -1,7 +1,7 @@
 import { useStore } from 'effector-react';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Button, FlexboxGrid, Nav, Navbar, Affix } from 'rsuite';
+import { Affix, Button, FlexboxGrid, Nav, Navbar } from 'rsuite';
 import { selectedStore, toggleSelected } from './models/selected';
 
 const Header = () => {
@@ -25,11 +25,11 @@ const Header = () => {
         <Navbar.Body>
           <FlexboxGrid justify="space-between" align="middle">
             <Nav>
-              <Nav.Item>
-                <Link to="/constructor">Constructor</Link>
+              <Nav.Item to="/constructor" componentClass={Link}>
+                Constructor
               </Nav.Item>
-              <Nav.Item>
-                <Link to="/add">Add image</Link>
+              <Nav.Item to="/add" componentClass={Link}>
+                Add image
               </Nav.Item>
             </Nav>
             <div>
@@ -53,3 +53,4 @@ const Header = () => {
 };
 
 export { Header };
+

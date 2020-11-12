@@ -1,6 +1,7 @@
 import isImageURL from 'image-url-validator';
-import React from 'react';
+import React, { useState } from 'react';
 import {
+  Alert,
   Button,
   ButtonToolbar,
   ControlLabel,
@@ -9,6 +10,8 @@ import {
   FormGroup,
   Schema,
 } from 'rsuite';
+import { addMeme } from '../models/memes';
+import { Meme } from '../types';
 
 const model = Schema.Model({
   title: Schema.Types.StringType().isRequired('This field is required'),
@@ -21,8 +24,22 @@ const model = Schema.Model({
 });
 
 const MemeForm = () => {
+  const [state, setState] = useState<Meme>({ imageUrl: '', title: '' });
+
   return (
-    <Form model={model}>
+    <Form
+      model={model}
+      onChange={(value) => {
+        setState(value as Meme);
+      }}
+      onSubmit={(status) => {
+        if (status === true) {
+          addMeme(state)
+            .then(() => Alert.success('Meme added'))
+            .catch((err) => Alert.error(err));
+        }
+      }}
+    >
       <FormGroup>
         <ControlLabel>Title</ControlLabel>
         <FormControl name="title"></FormControl>

@@ -4,15 +4,11 @@ import { useGate } from 'effector-react';
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
+import { AddPage } from './AddPage/AddPage';
 import { Header } from './Header';
 import { MemesGrid } from './Homepage/MemesGrid';
 import { AppGate } from './models/memes';
-import { MemeForm } from './AddPage/MemeForm';
 
-// import Main from './Main/Main';
-// import Constructor from './Constructor/Constructor';
-// import Add from './Add/Add';
-// import './css/App.css';
 const App = () => {
   useGate(AppGate);
 
@@ -23,7 +19,7 @@ const App = () => {
         <Switch>
           <Route exact path="/" component={MemesGrid} />
           <Route path="/constructor" component={() => <div />} />
-          <Route path="/add" component={MemeForm} />
+          <Route path="/add" component={AddPage} />
         </Switch>
       </div>
     </BrowserRouter>

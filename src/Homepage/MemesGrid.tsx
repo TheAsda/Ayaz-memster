@@ -1,10 +1,10 @@
 import { useStore } from 'effector-react';
 import React from 'react';
 import { FlexboxGrid } from 'rsuite';
-
 import { memesStore } from '../models/memes';
-import { selectedStore, toggleSelected } from '../models/selected';
+import { selectedStore } from '../models/selected';
 import { Card } from './Card';
+
 
 const MemesGrid = () => {
   const memes = useStore(memesStore);
@@ -12,7 +12,6 @@ const MemesGrid = () => {
 
   return (
     <FlexboxGrid
-      flexWrap="wrap"
       justify="start"
       direction="row"
       style={{ gap: 20, flexShrink: 1, margin: '20px 0' }}
@@ -20,6 +19,7 @@ const MemesGrid = () => {
       {memes.map((item, i) => {
         return (
           <Card
+            key={i}
             meme={item}
             selected={
               item.imageUrl === selected?.imageUrl &&
@@ -33,3 +33,4 @@ const MemesGrid = () => {
 };
 
 export { MemesGrid };
+

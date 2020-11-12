@@ -1,7 +1,7 @@
 import { createEffect, createEvent, createStore, forward } from 'effector';
 import { Meme } from '../types';
 import { collection } from '../firebase/firebase';
-import firebase from 'firebase';
+import firebase from 'firebase/app';
 import { createGate } from 'effector-react';
 
 type MemesStore = Meme[];
