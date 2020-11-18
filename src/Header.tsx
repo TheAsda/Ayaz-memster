@@ -1,12 +1,13 @@
 import { useStore } from 'effector-react';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Affix, Button, FlexboxGrid, Nav, Navbar } from 'rsuite';
 import { selectedStore, toggleSelected } from './models/selected';
 
 const Header = () => {
   const { selected } = useStore(selectedStore);
-
+  const { pathname } = useLocation<{ pathname: string }>();
+  console.log(pathname);
   return (
     <Affix>
       <Navbar style={{ padding: '0 10%' }}>
@@ -33,7 +34,7 @@ const Header = () => {
               </Nav.Item>
             </Nav>
             <div>
-              {selected && (
+              {selected && pathname !== '/constructor' && (
                 <FlexboxGrid align="middle" style={{ gap: 10 }}>
                   <div>
                     Selected:{' '}
