@@ -12,7 +12,7 @@ interface FirebaseMeme extends Meme {
 
 const memesStore = createStore<MemesStore>([]);
 
-collection.onSnapshot((snapshot) => {
+collection.orderBy('timestamp', 'desc').onSnapshot((snapshot) => {
   const data = snapshot.docs.map((item) => item.data() as FirebaseMeme);
 
   updateMemes(data);
