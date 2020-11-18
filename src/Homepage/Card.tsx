@@ -12,20 +12,16 @@ const Card = ({ meme, selected }: CardProps) => {
   return (
     <FlexboxGrid.Item
       style={{
-        flex: '1 0 300px',
-        width: 240,
         borderRadius: 10,
         transform: selected ? 'scale(1.1)' : undefined,
         backgroundColor: '#F7F7FA',
-        boxShadow: '0 0 10px rgba(0,0,0,0.5)'
+        boxShadow: '0 0 10px rgba(0,0,0,0.5)',
+        margin: '10px 0',
       }}
     >
       <div
         id={meme.title}
         style={{
-          display: 'grid',
-          gridTemplateColumns: '100%',
-          gridTemplateRows: '350px auto',
           cursor: 'pointer',
         }}
         onClick={() => {
@@ -38,8 +34,7 @@ const Card = ({ meme, selected }: CardProps) => {
           style={{
             margin: 20,
             objectFit: 'contain',
-            width: 'calc(100% - 40px)',
-            height: 'calc(350px - 40px)',
+            height: 350,
           }}
         />
         <figcaption
