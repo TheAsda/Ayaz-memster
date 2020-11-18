@@ -34,7 +34,7 @@ const Header = () => {
             </Nav>
             <div>
               {selected && (
-                <FlexboxGrid align="middle">
+                <FlexboxGrid align="middle" style={{ gap: 10 }}>
                   <div>
                     Selected:{' '}
                     <a href={`#${selected.title}`}>{selected.title}</a>
@@ -53,4 +53,3 @@ const Header = () => {
 };
 
 export { Header };
-
