@@ -46,10 +46,6 @@ const updateMemes = createEvent<Meme[]>();
 
 memesStore.on([updateMemes, fetchMemes.doneData], (_, memes) => memes);
 
-memesStore.on(addMeme.doneData, (state, value) => {
-  return [value, ...state];
-});
-
 const AppGate = createGate();
 
 forward({
