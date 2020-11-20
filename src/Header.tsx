@@ -7,7 +7,6 @@ import { selectedStore, toggleSelected } from './models/selected';
 const Header = () => {
   const { selected } = useStore(selectedStore);
   const { pathname } = useLocation<{ pathname: string }>();
-  console.log(pathname);
   return (
     <Affix>
       <Navbar style={{ padding: '0 10%' }}>

@@ -1,5 +1,5 @@
 import isImageURL from 'image-url-validator';
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import {
   Alert,
   Button,
@@ -26,27 +26,40 @@ const model = Schema.Model({
 const MemeForm = () => {
   const [state, setState] = useState<Meme>({ imageUrl: '', title: '' });
   const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<Record<string, string | undefined>>({});
+
+  const submit = () => {
+    if (Object.keys(error).reduce((acc, key) => !!error[key] || acc, false)) {
+      Alert.error('Form must have valid data');
+      return;
+    }
+    if (!state.title || !state.imageUrl) {
+      Alert.error('Add fields must be filled');
+      return;
+    }
+    setLoading(true);
+    addMeme(state)
+      .then(() => {
+        setLoading(false);
+        Alert.success('Meme added');
+      })
+      .catch((err) => {
+        setLoading(false);
+        Alert.error(err);
+      });
+  };
 
   return (
     <Form
       model={model}
       onChange={(value) => {
         setState(value as Meme);
+        ``;
       }}
-      onSubmit={(status) => {
-        if (status === true) {
-          setLoading(true);
-          addMeme(state)
-            .then(() => {
-              setLoading(false);
-              Alert.success('Meme added');
-            })
-            .catch((err) => {
-              setLoading(false);
-              Alert.error(err);
-            });
-        }
+      onCheck={(data) => {
+        setError(data);
       }}
+      onSubmit={submit}
     >
       <FormGroup>
         <ControlLabel>Title</ControlLabel>
