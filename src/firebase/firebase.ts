@@ -11,7 +11,8 @@ const config = {
   appId: '1:748903039219:web:1646329bf7b4631c',
 };
 
-export const collection = firebase
-  .initializeApp(config)
-  .firestore()
-  .collection('images');
+const app = firebase.initializeApp(config);
+firebase.analytics();
+
+export const perf = app.performance();
+export const collection = app.firestore().collection('images');
