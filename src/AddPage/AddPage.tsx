@@ -10,4 +10,4 @@ const AddPage = () => {
   );
 };
 
-export { AddPage };
+export { AddPage as default };

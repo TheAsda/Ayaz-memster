@@ -1,5 +1,5 @@
 import isImageURL from 'image-url-validator';
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import {
   Alert,
   Button,
@@ -10,6 +10,7 @@ import {
   FormGroup,
   Schema,
 } from 'rsuite';
+
 import { addMeme } from '../models/memes';
 import { Meme } from '../types';
 

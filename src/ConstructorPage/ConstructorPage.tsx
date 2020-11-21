@@ -1,5 +1,5 @@
 import { useStore } from 'effector-react';
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { selectedStore } from '../models/selected';
 import { Stage, Layer, Image, Text } from 'react-konva';
 import useImage from 'use-image';
@@ -164,4 +164,4 @@ const ConstructorPage = () => {
   );
 };
 
-export { ConstructorPage };
+export { ConstructorPage as default };

@@ -3,13 +3,13 @@
   "version": "1.0.0",
   "private": true,
   "dependencies": {
-    "effector": "^21.7.1",
+    "effector": "^21.7.2",
     "effector-react": "^21.0.8",
-    "firebase": "^8.0.1",
+    "firebase": "^8.1.1",
     "image-url-validator": "^0.2.4",
-    "konva": "^7.1.6",
-    "react": ">=17.0.0",
-    "react-dom": ">=17.0.0",
+    "konva": "^7.1.9",
+    "react": ">=17.0.1",
+    "react-dom": ">=17.0.1",
     "react-konva": "^17.0.0-0",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
@@ -37,10 +37,10 @@
   "author": "Andrey Kiselev <omega-faworit@yandex.ru>",
   "license": "MIT",
   "devDependencies": {
-    "@types/react-dom": "^16.9.9",
+    "@types/react-dom": "^17.0.0",
     "@types/react-router": "^5.1.8",
     "@types/react-router-dom": "^5.1.6",
     "parcel": "^1.12.4",
-    "typescript": "^4.0.5"
+    "typescript": "^4.1.2"
   }
 }
