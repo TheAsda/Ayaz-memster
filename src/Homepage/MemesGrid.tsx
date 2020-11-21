@@ -1,11 +1,15 @@
 import { useStore } from 'effector-react';
 import React from 'react';
-import { FlexboxGrid, Grid } from 'rsuite';
+import {
+  ScrollPosition,
+  trackWindowScroll,
+} from 'react-lazy-load-image-component';
+
 import { memesStore } from '../models/memes';
 import { selectedStore } from '../models/selected';
 import { Card } from './Card';
 
-const MemesGrid = () => {
+const MemesGrid = ({ scrollPosition }: { scrollPosition: ScrollPosition }) => {
   const memes = useStore(memesStore);
   const { selected } = useStore(selectedStore);
 
@@ -29,6 +33,7 @@ const MemesGrid = () => {
               item.imageUrl === selected?.imageUrl &&
               item.title === selected.title
             }
+            scrollPosition={scrollPosition}
           />
         );
       })}
@@ -36,4 +41,6 @@ const MemesGrid = () => {
   );
 };
 
-export { MemesGrid };
+const MemesGridWithScroll = trackWindowScroll(MemesGrid);
+
+export { MemesGridWithScroll as MemesGrid };
