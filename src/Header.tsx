@@ -3,6 +3,7 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import {
   Affix,
+  Badge,
   Button,
   FlexboxGrid,
   Icon,
@@ -11,6 +12,7 @@ import {
   Nav,
   Navbar,
 } from 'rsuite';
+import { memesStore } from './models/memes';
 
 import { resetSearch, searchStore, setSearch } from './models/search';
 import { selectedStore, toggleSelected } from './models/selected';
@@ -18,6 +20,7 @@ import { selectedStore, toggleSelected } from './models/selected';
 const Header = () => {
   const { selected } = useStore(selectedStore);
   const searchString = useStore(searchStore);
+  const memesCount = useStore(memesStore).length;
   const { pathname } = useLocation<{ pathname: string }>();
 
   return (
@@ -32,7 +35,9 @@ const Header = () => {
               fontWeight: 'bold',
             }}
           >
-            Ayaz-Memster
+            <Badge content={memesCount} maxCount={999}>
+              Ayaz-Memster
+            </Badge>
           </Link>
         </Navbar.Header>
         <Navbar.Body>
