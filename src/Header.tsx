@@ -1,12 +1,25 @@
 import { useStore } from 'effector-react';
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Affix, Button, FlexboxGrid, Nav, Navbar } from 'rsuite';
+import {
+  Affix,
+  Button,
+  FlexboxGrid,
+  Icon,
+  Input,
+  InputGroup,
+  Nav,
+  Navbar,
+} from 'rsuite';
+
+import { resetSearch, searchStore, setSearch } from './models/search';
 import { selectedStore, toggleSelected } from './models/selected';
 
 const Header = () => {
   const { selected } = useStore(selectedStore);
+  const searchString = useStore(searchStore);
   const { pathname } = useLocation<{ pathname: string }>();
+
   return (
     <Affix>
       <Navbar style={{ padding: '0 10%' }}>
@@ -32,8 +45,8 @@ const Header = () => {
                 Add image
               </Nav.Item>
             </Nav>
-            <div>
-              {selected && pathname !== '/constructor' && (
+            {selected && pathname !== '/constructor' && (
+              <div>
                 <FlexboxGrid align="middle" style={{ gap: 10 }}>
                   <div>
                     Selected:{' '}
@@ -43,8 +56,21 @@ const Header = () => {
                     Clear
                   </Button>
                 </FlexboxGrid>
-              )}
-            </div>
+              </div>
+            )}
+            {pathname !== '/add' && pathname !== '/constructor' && (
+              <div>
+                <InputGroup>
+                  <Input
+                    value={searchString}
+                    onChange={(value) => setSearch(value)}
+                  />
+                  <InputGroup.Button onClick={() => resetSearch()}>
+                    <Icon icon="close" />
+                  </InputGroup.Button>
+                </InputGroup>
+              </div>
+            )}
           </FlexboxGrid>
         </Navbar.Body>
       </Navbar>

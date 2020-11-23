@@ -6,11 +6,18 @@ import {
 } from 'react-lazy-load-image-component';
 
 import { memesStore } from '../models/memes';
+import { searchStore } from '../models/search';
 import { selectedStore } from '../models/selected';
 import { Card } from './Card';
 
 const MemesGrid = ({ scrollPosition }: { scrollPosition: ScrollPosition }) => {
-  const memes = useStore(memesStore);
+  const searchString = useStore(searchStore);
+  const memes = useStore(memesStore).filter(
+    (meme) =>
+      meme.title
+        .toLocaleLowerCase()
+        .indexOf(searchString.toLocaleLowerCase()) !== -1
+  );
   const { selected } = useStore(selectedStore);
 
   return (
