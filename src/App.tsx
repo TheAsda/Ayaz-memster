@@ -18,7 +18,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Header />
-      <div style={{ margin: '0 15%' }}>
+      <div style={{ margin: '0 10%' }}>
         <Suspense fallback={() => <Loader />}>
           <Switch>
             <Route exact path="/" component={MemesGrid} />
