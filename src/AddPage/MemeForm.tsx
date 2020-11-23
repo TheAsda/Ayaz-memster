@@ -43,6 +43,7 @@ const MemeForm = () => {
       .then(() => {
         setLoading(false);
         Alert.success('Meme added');
+        setState({ title: '', imageUrl: '' });
       })
       .catch((err) => {
         setLoading(false);
