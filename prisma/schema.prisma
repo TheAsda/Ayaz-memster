@@ -9,3 +9,20 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id           String  @id @default(uuid())
+  username     String  @unique
+  passwordHash String
+  canAccess    Boolean @default(false)
+  canEdit      Boolean @default(false)
+}
+
+model Meme {
+  id         String   @id
+  name       String
+  uploadedAt DateTime @default(now())
+  image      Bytes
+  preview    Bytes
+  isAnimated Boolean  @default(false)
+}

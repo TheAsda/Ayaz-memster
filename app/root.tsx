@@ -7,10 +7,14 @@ import {
   Scripts,
   ScrollRestoration,
 } from '@remix-run/react';
-import styles from './styles/app.css';
+import tailwind from './styles/tailwind.css';
+import app from './styles/app.css';
 
 export function links() {
-  return [{ rel: 'stylesheet', href: styles }];
+  return [
+    { rel: 'stylesheet', href: tailwind },
+    { rel: 'stylesheet', href: app },
+  ];
 }
 export const meta: MetaFunction = () => ({
   charset: 'utf-8',
@@ -20,12 +24,12 @@ export const meta: MetaFunction = () => ({
 
 export default function App() {
   return (
-    <html lang="en">
+    <html lang="en" className='font-sans h-full'>
       <head>
         <Meta />
         <Links />
       </head>
-      <body className=''>
+      <body className="h-full">
         <Outlet />
         <ScrollRestoration />
         <Scripts />
