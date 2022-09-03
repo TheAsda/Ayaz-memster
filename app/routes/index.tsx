@@ -24,6 +24,7 @@ export const loader: LoaderFunction = async ({
         uploadedAt: true,
       },
       where: { name: { contains: search ?? '', mode: 'insensitive' } },
+      orderBy: { uploadedAt: 'desc' },
     })
   ).map<Meme>((meme) => ({
     id: meme.id,

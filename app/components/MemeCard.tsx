@@ -11,7 +11,7 @@ export const MemeCard = (props: MemeCardProps) => {
   return (
     <Link
       to={`/meme/${meme.id}`}
-      className="grid place-items-stretch p-3 shadow-md rounded-sm"
+      className="grid place-items-stretch p-3 shadow-md border-2 rounded-sm"
     >
       <figure className="flex flex-col">
         <img

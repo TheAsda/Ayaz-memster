@@ -15,6 +15,7 @@ export const ImageDropzone = (props: ImageDropzoneProps) => {
     onDrop: (acceptedFiles) => {
       props.onDrop(acceptedFiles[0]);
     },
+    maxSize: 1024 * 1024 * 10,
   });
 
   return (

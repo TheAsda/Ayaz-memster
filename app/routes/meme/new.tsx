@@ -43,7 +43,7 @@ export const action: ActionFunction = async ({ request }) => {
     uploadHandler
   );
 
-  const name = formData.get('name')?.toString();
+  const name = formData.get('name')?.toString().trim();
   const file = formData.get('file');
   const crop = formData.get('crop')?.toString();
 
@@ -103,8 +103,6 @@ export default function NewMeme() {
   const [file, setFile] = useState<File | undefined>();
   const [crop, setCrop] = useState<Crop | undefined>();
   const submit = useSubmit();
-  console.log(crop);
-  
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     const formData = new FormData(e.currentTarget);
@@ -122,7 +120,7 @@ export default function NewMeme() {
   return (
     <form
       method="POST"
-      className="grid basis-full md:basis-1/3 md:max-w-lg m-auto gap-1 mx-10"
+      className="grid basis-full md:basis-1/3 md:max-w-lg m-auto gap-1 mx-10 py-4"
       onSubmit={handleSubmit}
     >
       <FormControl>

@@ -58,6 +58,7 @@ export const ImageCropper = (props: ImageCropperProps) => {
           setCrop(crop);
         }}
         className="w-full"
+        keepSelection
       >
         <img
           src={image}

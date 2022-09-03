@@ -17,7 +17,7 @@ export const NavBar = (props: HeaderProps) => {
 
   return (
     <header className="order-1 sticky bottom-0 lg:-order-none">
-      <div className="flex gap-2 items-center justify-evenly bg-white p-1 lg:flex-col lg:items-start lg:justify-start">
+      <div className="flex gap-2 items-center justify-evenly bg-white p-1 lg:flex-col lg:items-start lg:justify-start lg:shadow-md lg:h-full">
         <Link to="/" className="w-9 h-9">
           <HomeIcon />
         </Link>
