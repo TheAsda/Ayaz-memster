@@ -12,6 +12,8 @@
     "seed": "node --require esbuild-register prisma/seed.ts"
   },
   "dependencies": {
+    "@headlessui/react": "^1.6.6",
+    "@heroicons/react": "^2.0.10",
     "@prisma/client": "^4.3.0",
     "@remix-run/node": "^1.7.0",
     "@remix-run/react": "^1.7.0",
@@ -19,6 +21,8 @@
     "clsx": "^1.2.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-use": "^17.4.0",
+    "remix-utils": "^3.3.0",
     "sharp": "^0.30.7",
     "zod": "^3.18.0"
   },
