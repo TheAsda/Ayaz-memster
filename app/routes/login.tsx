@@ -168,6 +168,7 @@ export default function Login() {
             type="text"
             name="username"
             placeholder="example@mail.com"
+            autoComplete="username"
           />
           <FormErrorText>{formState?.fieldErrors?.username}</FormErrorText>
         </FormControl>
@@ -178,9 +179,15 @@ export default function Login() {
             type="password"
             name="password"
             placeholder="My Password"
+            autoComplete={
+              formState?.state.type === 'login'
+                ? 'current-password'
+                : 'new-password'
+            }
           />
           <FormErrorText>{formState?.fieldErrors?.password}</FormErrorText>
         </FormControl>
+        <FormErrorText>{formState?.formError}</FormErrorText>
         <Button>Submit</Button>
       </form>
       <div className="pattern flex-grow hidden md:block" />
