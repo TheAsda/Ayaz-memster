@@ -24,13 +24,17 @@ export const useMemeSearch = () => {
 };
 
 export const Search = () => {
-  const { search, updateSearch } = useMemeSearch();
+  const { search, updateSearch, clearSearch } = useMemeSearch();
   const navigate = useNavigate();
   const location = useLocation();
   const buttonRef = useRef<HTMLButtonElement>(null);
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    updateSearch(e.target.value);
+    if (e.target.value === '') {
+      clearSearch();
+    } else {
+      updateSearch(e.target.value);
+    }
   };
 
   const toMainPage = () => {
@@ -52,7 +56,7 @@ export const Search = () => {
       <Popover.Button ref={buttonRef} className="w-9 h-9">
         <MagnifyingGlassIcon />
       </Popover.Button>
-      <Popover.Panel className="absolute left-0 right-0 bottom-full lg:left-full lg:right-auto lg:top-auto lg:shadow-sm">
+      <Popover.Panel className="absolute left-0 right-0 bottom-full lg:left-full lg:right-auto lg:bottom-auto lg:shadow-sm lg:-translate-y-full">
         {({ close }) => {
           return (
             <div className="flex gap-1 items-center lg:w-52 p-2 bg-white lg:rounded-sm">
