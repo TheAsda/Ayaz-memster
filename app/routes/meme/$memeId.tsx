@@ -1,13 +1,13 @@
-import type { LoaderFunction } from '@remix-run/node';
-import { useLoaderData, useNavigate } from '@remix-run/react';
-import { ClientOnly } from 'remix-utils';
-import type { Meme } from '~/types/meme';
-import { db } from '~/utils/db.server';
 import {
   ArrowDownTrayIcon,
   ArrowLeftIcon,
   ShareIcon,
 } from '@heroicons/react/24/outline';
+import type { LoaderFunction } from '@remix-run/node';
+import { Link, useLoaderData } from '@remix-run/react';
+import { ClientOnly } from 'remix-utils';
+import type { Meme } from '~/types/meme';
+import { db } from '~/utils/db.server';
 
 type LoaderData = {
   meme: Meme;
@@ -41,12 +41,6 @@ export const loader: LoaderFunction = async ({ params, request }) => {
 export default function MemeInfo() {
   const { meme } = useLoaderData<LoaderData>();
 
-  const navigate = useNavigate();
-
-  const goBack = () => {
-    navigate(-1);
-  };
-
   const share = () => {
     if ('share' in navigator) {
       navigator.share({
@@ -59,12 +53,12 @@ export default function MemeInfo() {
   return (
     <div className="p-2 max-w-6xl m-auto flex flex-col gap-2">
       <div className="flex justify-between">
-        <button
-          onClick={goBack}
+        <Link
+          to="/"
           className="p-1 hover:bg-purple-600 aspect-square grid place-items-center w-9 h-9 rounded-sm"
         >
           <ArrowLeftIcon />
-        </button>
+        </Link>
         <div className="flex gap-2">
           <button
             className="p-1 hover:bg-purple-600 aspect-square grid place-items-center w-9 h-9 rounded-sm"

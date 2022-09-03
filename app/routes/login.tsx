@@ -1,6 +1,7 @@
 import type { ActionFunction } from '@remix-run/node';
 import { json } from '@remix-run/node';
 import { useActionData } from '@remix-run/react';
+import { useState } from 'react';
 import { z } from 'zod';
 import { Button } from '~/components/Button';
 import { FormControl } from '~/components/FormControl';
@@ -121,6 +122,7 @@ export const action: ActionFunction = async ({ request }) => {
 
 export default function Login() {
   const formState = useActionData<FormState>();
+  const [type, setType] = useState<'register' | 'login'>('login');
 
   return (
     <div className="h-full flex">
@@ -128,7 +130,14 @@ export default function Login() {
         method="POST"
         className="grid basis-full md:basis-1/3 md:max-w-lg m-auto gap-1 mx-10"
       >
-        <fieldset className="flex flex-col">
+        <fieldset
+          className="flex flex-col"
+          onChange={(e) =>
+            setType(
+              (e.target as HTMLInputElement).value as 'register' | 'login'
+            )
+          }
+        >
           <legend className="col-end-2 font-bold text-center text-lg">
             Login or Register?
           </legend>
@@ -162,27 +171,27 @@ export default function Login() {
           </div>
         </fieldset>
         <FormControl>
-          <FormLabel>Username</FormLabel>
+          <FormLabel htmlFor="username">Username</FormLabel>
           <Input
+            id="username"
             defaultValue={formState?.state.username}
             type="text"
             name="username"
-            placeholder="example@mail.com"
+            placeholder="Username"
             autoComplete="username"
           />
           <FormErrorText>{formState?.fieldErrors?.username}</FormErrorText>
         </FormControl>
         <FormControl>
-          <FormLabel>Password</FormLabel>
+          <FormLabel htmlFor="password">Password</FormLabel>
           <Input
+            id="password"
             defaultValue={formState?.state.password}
             type="password"
             name="password"
             placeholder="My Password"
             autoComplete={
-              formState?.state.type === 'login'
-                ? 'current-password'
-                : 'new-password'
+              type === 'login' ? 'current-password' : 'new-password'
             }
           />
           <FormErrorText>{formState?.fieldErrors?.password}</FormErrorText>
