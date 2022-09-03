@@ -11,8 +11,6 @@ export const Search = () => {
   const navigate = useNavigate();
 
   const updateSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.value);
-    
     search.set('search', e.target.value);
     setSearch(search);
   };
@@ -26,7 +24,7 @@ export const Search = () => {
         {({ close }) => (
           <div className="flex gap-1 items-center">
             <Input
-              className="w-full "
+              className="w-full"
               placeholder="Search"
               autoFocus
               onFocus={() => navigate('/')}
