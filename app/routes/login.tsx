@@ -67,7 +67,9 @@ const register = async (username: string, password: string) => {
 };
 
 const login = async (username: string, password: string) => {
-  const user = await db.user.findUnique({ where: { username } });
+  const user = await db.user.findFirst({
+    where: { username: { equals: username, mode: 'insensitive' } },
+  });
   const formState: FormState = {
     fieldErrors: {},
     state: { type: 'login', username, password },
