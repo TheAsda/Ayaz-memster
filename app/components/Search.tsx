@@ -3,21 +3,53 @@ import {
   ChevronDownIcon,
   MagnifyingGlassIcon,
 } from '@heroicons/react/24/outline';
-import { useNavigate, useSearchParams } from '@remix-run/react';
+import { useLocation, useNavigate, useSearchParams } from '@remix-run/react';
+import { useEffect, useRef } from 'react';
 import { Input } from './Input';
 
-export const Search = () => {
-  const [search, setSearch] = useSearchParams();
-  const navigate = useNavigate();
+export const useMemeSearch = () => {
+  const [params, setParams] = useSearchParams();
 
-  const updateSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    search.set('search', e.target.value);
-    setSearch(search);
+  const updateSearch = (search: string) => {
+    params.set('search', search);
+    setParams(params);
   };
+
+  const clearSearch = () => {
+    params.delete('search');
+    setParams(params);
+  };
+
+  return { search: params.get('search'), updateSearch, clearSearch };
+};
+
+export const Search = () => {
+  const { search, updateSearch } = useMemeSearch();
+  const navigate = useNavigate();
+  const location = useLocation();
+  const buttonRef = useRef<HTMLButtonElement>(null);
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    updateSearch(e.target.value);
+  };
+
+  const toMainPage = () => {
+    if (location.pathname !== '/') {
+      navigate('/');
+    }
+  };
+
+  // Open search if search param is present
+  useEffect(() => {
+    if (search) {
+      buttonRef.current?.click();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <Popover>
-      <Popover.Button className="w-9 h-9">
+      <Popover.Button ref={buttonRef} className="w-9 h-9">
         <MagnifyingGlassIcon />
       </Popover.Button>
       <Popover.Panel className="absolute left-0 right-0 bottom-full lg:left-full lg:right-auto lg:top-auto lg:shadow-sm">
@@ -28,8 +60,9 @@ export const Search = () => {
                 className="w-full"
                 placeholder="Search"
                 autoFocus
-                onFocus={() => navigate('/')}
-                onChange={updateSearch}
+                onFocus={toMainPage}
+                onChange={handleSearchChange}
+                value={search ?? ''}
                 type="search"
               />
               <button className="w-7 h-7" onClick={() => close()}>
