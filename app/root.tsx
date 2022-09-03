@@ -66,7 +66,7 @@ export default function App() {
         <Meta />
         <Links />
       </head>
-      <body className="h-full flex flex-col">
+      <body className="h-full flex flex-col lg:flex-row">
         <NavBar user={user} />
         <main className="flex-grow">
           {user === undefined && location.pathname !== '/login' ? (

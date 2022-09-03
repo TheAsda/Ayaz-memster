@@ -16,13 +16,13 @@ export const Search = () => {
   };
 
   return (
-    <Popover>
+    <Popover className="w-9 h-9">
       <Popover.Button className="w-9 h-9">
         <MagnifyingGlassIcon />
       </Popover.Button>
-      <Popover.Panel className="absolute left-0 right-0 top-0 -translate-y-full bg-white p-2">
+      <Popover.Panel className="absolute left-0 right-0 top-0 -translate-y-full lg:left-full lg:right-auto lg:top-auto lg:shadow-sm">
         {({ close }) => (
-          <div className="flex gap-1 items-center">
+          <div className="flex gap-1 items-center lg:w-52 p-2 bg-white">
             <Input
               className="w-full"
               placeholder="Search"
