@@ -31,7 +31,10 @@ export const ImageDropzone = (props: ImageDropzoneProps) => {
 
   return (
     <>
-      <div {...getRootProps()} className="border p-4 text-center">
+      <div
+        {...getRootProps()}
+        className="border p-4 text-center cursor-pointer"
+      >
         <input {...getInputProps()} name="file"></input>
         {isDragActive ? (
           <p>Drop the files here ...</p>
