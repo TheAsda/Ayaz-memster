@@ -4,6 +4,7 @@ import {
   MagnifyingGlassIcon,
 } from '@heroicons/react/24/outline';
 import { useLocation, useNavigate, useSearchParams } from '@remix-run/react';
+import clsx from 'clsx';
 import { useEffect, useRef } from 'react';
 import { Input } from './Input';
 
@@ -53,13 +54,13 @@ export const Search = () => {
 
   return (
     <Popover>
-      <Popover.Button ref={buttonRef} className="w-9 h-9">
+      <Popover.Button ref={buttonRef} className={clsx("w-9 h-9 relative", search && 'text-blue-600')}>
         <MagnifyingGlassIcon />
       </Popover.Button>
-      <Popover.Panel className="absolute left-0 right-0 bottom-full lg:left-full lg:right-auto lg:bottom-auto lg:shadow-sm lg:-translate-y-full">
+      <Popover.Panel className="absolute left-0 right-0 bottom-full lg:fixed lg:top-0 lg:left-1/2 lg:-translate-x-1/2 lg:right-auto">
         {({ close }) => {
           return (
-            <div className="flex gap-1 items-center lg:w-52 p-2 bg-white lg:rounded-sm">
+            <div className="flex gap-1 items-center lg:w-52 p-2 bg-white lg:rounded-sm lg:shadow-md">
               <Input
                 className="w-full"
                 placeholder="Search"
