@@ -3,11 +3,22 @@ import {
   ArrowLeftIcon,
   ShareIcon,
 } from '@heroicons/react/24/outline';
-import type { LoaderFunction } from '@remix-run/node';
+import type { LoaderFunction, MetaFunction } from '@remix-run/node';
 import { Link, useLoaderData } from '@remix-run/react';
 import { ClientOnly } from 'remix-utils';
 import type { Meme } from '~/types/meme';
 import { db } from '~/utils/db.server';
+
+export const meta: MetaFunction = ({ params, data }) => {
+  const { memeId } = params;
+  const { meme } = data as LoaderData;
+
+  return {
+    title: `Ayaz-Memster - ${meme.name} Meme`,
+    description: `Meme ${meme.name} by ${meme.author}`,
+    'og:image': `/api/images/${memeId}`,
+  };
+};
 
 type LoaderData = {
   meme: Meme;
