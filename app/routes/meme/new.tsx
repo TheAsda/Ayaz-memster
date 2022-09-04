@@ -120,7 +120,7 @@ export default function NewMeme() {
   return (
     <form
       method="POST"
-      className="grid basis-full md:basis-1/3 md:max-w-lg m-auto gap-1 mx-10 py-4"
+      className="grid w-full md:max-w-lg gap-1 px-10 py-4 mx-auto"
       onSubmit={handleSubmit}
     >
       <FormControl>
