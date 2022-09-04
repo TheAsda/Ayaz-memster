@@ -58,6 +58,8 @@ export default function MemeInfo() {
         url: window.location.href,
         title: `Ayaz Meme ${meme.name}`,
       });
+    } else {
+      alert('Sharing not supported');
     }
   };
 
@@ -77,9 +79,13 @@ export default function MemeInfo() {
           >
             <ShareIcon />
           </button>
-          <button className="p-1 hover:bg-purple-600 aspect-square grid place-items-center w-9 h-9 rounded-sm">
+          <a
+            className="p-1 hover:bg-purple-600 aspect-square grid place-items-center w-9 h-9 rounded-sm"
+            href={`/api/images/${meme.id}/download`}
+            download
+          >
             <ArrowDownTrayIcon />
-          </button>
+          </a>
         </div>
       </div>
       <figure>
