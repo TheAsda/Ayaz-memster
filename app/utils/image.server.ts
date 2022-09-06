@@ -5,7 +5,7 @@ const toInt = (value: number) => Math.round(value);
 
 export const getPreview = async (
   image: Buffer,
-  crop: Crop,
+  crop: Pick<Crop, 'height' | 'width' | 'x' | 'y'>,
   isAnimated = false
 ) => {
   return sharp(image, { animated: isAnimated })
