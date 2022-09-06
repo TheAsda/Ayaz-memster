@@ -1,4 +1,4 @@
-import type { ActionFunction } from '@remix-run/node';
+import type { ActionFunction, MetaFunction } from '@remix-run/node';
 import { json } from '@remix-run/node';
 import { useActionData } from '@remix-run/react';
 import { useState } from 'react';
@@ -11,6 +11,10 @@ import { Input } from '~/components/Input';
 import { db } from '~/utils/db.server';
 import { getHash } from '~/utils/hash.server';
 import { createUserSession } from '~/utils/session.server';
+
+export const meta: MetaFunction = () => ({
+  title: 'Ayaz-Memster - Login',
+});
 
 const usernameSchema = z
   .string({ required_error: 'Username is required' })

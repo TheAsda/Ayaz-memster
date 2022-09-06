@@ -6,7 +6,7 @@ import { useState } from 'react';
 import { ImageDropzone } from '~/components/ImageDropzone';
 import { ImageCropper } from '~/components/ImageCropper';
 import cropStyles from 'react-image-crop/dist/ReactCrop.css';
-import type { ActionFunction } from '@remix-run/node';
+import type { ActionFunction, MetaFunction } from '@remix-run/node';
 import {
   json,
   redirect,
@@ -20,6 +20,10 @@ import { getIsAnimated, getPreview, getWebp } from '~/utils/image.server';
 import slugify from 'slugify';
 import { getUserId } from '~/utils/session.server';
 import { FormErrorText } from '~/components/FormErrorText';
+
+export const meta: MetaFunction = () => ({
+  title: 'Ayaz-Memster - New Meme',
+});
 
 export const links = () => [{ rel: 'stylesheet', href: cropStyles }];
 

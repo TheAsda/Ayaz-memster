@@ -15,7 +15,7 @@ export const meta: MetaFunction = ({ params, data }) => {
 
   return {
     title: `Ayaz-Memster - ${meme.name} Meme`,
-    description: `Meme ${meme.name} by ${meme.author}`,
+    description: `${meme.name} meme by ${meme.author}`,
     'og:image': `/api/images/${memeId}`,
   };
 };
