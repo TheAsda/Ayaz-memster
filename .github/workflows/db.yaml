@@ -1,0 +1,27 @@
+name: Deploy database
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'prisma/schema.prisma'
+  workflow_dispatch:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    name: Deploy database
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup node
+        uses: actions/setup-node@v2
+      - name: Install dependencies
+        run: npm install
+      - name: Deploy database
+        run: npx prisma migrate deploy
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
