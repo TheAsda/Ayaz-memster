@@ -1,0 +1,34 @@
+name: Build docker image
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'src/**'
+  workflow_dispatch:
+    branches:
+      - master
+
+jobs:
+  build:
+    name: Build and push docker image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Get version
+        uses: sergeysova/jq-action@v2
+        id: version
+        with:
+          cmd: 'jq .version package.json -r'
+      - name: Build and push docker image
+        uses: philips-software/docker-ci-scripts@v4.1.2
+        with:
+          image-name: ayaz-memster
+          tags: latest ${{ steps.version.outputs.value }}
+        env:
+          DOCKER_USERNAME: ${{ github.actor }}
+          DOCKER_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
+          DOCKER_REGISTRY: ghcr.io/theasda
+          GITHUB_ORGANIZATION: theasda
