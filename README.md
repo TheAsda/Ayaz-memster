@@ -1,6 +1,6 @@
 # Ayaz-Memster
 
-****gram for single person
+*****gram for single person
 
 ---
 
