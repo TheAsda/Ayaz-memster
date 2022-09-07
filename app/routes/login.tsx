@@ -57,7 +57,7 @@ const register = async (username: string, password: string) => {
       .flatten()
       .formErrors.join(', ');
   }
-  if (Object.keys(formState).length > 0) {
+  if (Object.keys(formState.fieldErrors!).length > 0) {
     return badRequest(formState);
   }
   const user = await db.user.findUnique({ where: { username } });
