@@ -13,4 +13,4 @@ ENV NODE_ENV=production
 RUN npx prisma generate
 RUN npm prune --production && npm cache clean --force && command rm -rf .git
 
-CMD npm run start
+CMD npm run start:test

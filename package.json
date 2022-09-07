@@ -6,7 +6,8 @@
     "build:css": "tailwindcss -m -i ./styles/tailwind.css -o app/styles/tailwind.css",
     "dev": "concurrently \"npm run dev:css\" \"remix dev\"",
     "dev:css": "tailwindcss -w -i ./styles/tailwind.css -o app/styles/tailwind.css",
-    "start": "remix-serve build"
+    "start": "remix-serve build",
+    "start:test": "node server.js"
   },
   "prisma": {
     "seed": "node --require esbuild-register prisma/seed.ts"
@@ -15,6 +16,7 @@
     "@headlessui/react": "^1.6.6",
     "@heroicons/react": "^2.0.10",
     "@prisma/client": "^4.3.0",
+    "@remix-run/express": "^1.7.0",
     "@remix-run/node": "^1.7.0",
     "@remix-run/react": "^1.7.0",
     "@remix-run/serve": "^1.7.0",
