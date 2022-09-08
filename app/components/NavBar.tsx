@@ -5,7 +5,7 @@ import {
 } from '@heroicons/react/24/outline';
 import { Link } from '@remix-run/react';
 import type { User } from '~/types/user';
-import { ProfileButton } from './ProfileButtont';
+import { ProfileButton } from './ProfileButton';
 import { Search } from './Search';
 
 export interface HeaderProps {
