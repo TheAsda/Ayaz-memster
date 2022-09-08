@@ -1,10 +1,14 @@
-import type { LoaderFunction } from '@remix-run/node';
+import type { LoaderFunction, MetaFunction } from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
 import { Button } from '~/components/Button';
 import { MemeCard } from '~/components/MemeCard';
 import { useMemeSearch } from '~/components/Search';
 import { db } from '~/utils/db.server';
 import type { Meme } from '../types/meme';
+
+export const meta: MetaFunction = () => ({
+  description: 'Personal *****gram of Ayaz',
+});
 
 type LoaderData = { memes: Meme[]; totalMemes: number };
 
