@@ -96,9 +96,8 @@ const getProfile = async (authorization: string) => {
   const res = await fetch('https://discord.com/api/users/@me', {
     headers: { authorization },
   });
-  const data: { id: string; global_name: string; email: string } =
-    await res.json();
-  return { id: data.id, email: data.email, username: data.global_name };
+  const data: { id: string; global_name: string } = await res.json();
+  return { id: data.id, username: data.global_name };
 };
 
 const SERVER_ID = '400230889453518848';
