@@ -25,9 +25,11 @@ export function links() {
 }
 export const meta: MetaFunction = () => [
   {
-    charset: 'utf-8',
     title: 'Ayaz-Memster',
-    viewport: 'width=device-width,initial-scale=1',
+  },
+  {
+    name: 'description',
+    content: 'Personal *****gram of Ayaz',
   },
 ];
 
@@ -67,12 +69,14 @@ export default function App() {
   return (
     <html lang="en" className="font-sans h-full">
       <head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
         <Meta />
         <Links />
       </head>
       <body className="min-h-full flex flex-col lg:flex-row">
         <NavBar user={user} />
-        <main className="flex-grow">
+        <main className="flex-grow basis-full">
           {user === undefined && location.pathname !== '/login' ? (
             <NotLoggedIn />
           ) : (
