@@ -11,12 +11,16 @@ export const authenticator = new Authenticator<SessionUser>(storage);
 
 const clientId = process.env.CLIENT_ID;
 const clientSecret = process.env.CLIENT_SECRET;
+const appUrl = process.env.APP_URL;
 
 if (!clientId) {
   throw new Error('Client ID is not provided');
 }
 if (!clientSecret) {
   throw new Error('Client Secret is not provided');
+}
+if (!appUrl) {
+  throw new Error('App Url is not provided');
 }
 
 authenticator.use(
@@ -27,7 +31,7 @@ authenticator.use(
       clientID: clientId,
       clientSecret: clientSecret,
       // TODO: change to env
-      callbackURL: 'http://localhost:3000/auth/discord',
+      callbackURL: `${appUrl}/auth/discord`,
       scope: 'identify email guilds',
     },
     async ({ accessToken, extraParams, profile }) => {
