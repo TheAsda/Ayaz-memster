@@ -13,11 +13,13 @@ export const meta: MetaFunction = ({ params, data }) => {
   const { memeId } = params;
   const { meme } = data as LoaderData;
 
-  return {
-    title: `Ayaz-Memster - ${meme.name} Meme`,
-    description: `${meme.name} meme by ${meme.author}`,
-    'og:image': `/api/images/${memeId}/preview`,
-  };
+  return [
+    {
+      title: `Ayaz-Memster - ${meme.name} Meme`,
+      description: `${meme.name} meme by ${meme.author}`,
+      'og:image': `/api/images/${memeId}/preview`,
+    },
+  ];
 };
 
 type LoaderData = {

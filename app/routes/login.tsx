@@ -12,9 +12,11 @@ import { db } from '~/utils/db.server';
 import { getHash } from '~/utils/hash.server';
 import { createUserSession } from '~/utils/session.server';
 
-export const meta: MetaFunction = () => ({
-  title: 'Ayaz-Memster - Login',
-});
+export const meta: MetaFunction = () => [
+  {
+    title: 'Ayaz-Memster - Login',
+  },
+];
 
 const usernameSchema = z
   .string({ required_error: 'Username is required' })

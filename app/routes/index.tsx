@@ -6,9 +6,11 @@ import { useMemeSearch } from '~/components/Search';
 import { db } from '~/utils/db.server';
 import type { Meme } from '../types/meme';
 
-export const meta: MetaFunction = () => ({
-  description: 'Personal *****gram of Ayaz',
-});
+export const meta: MetaFunction = () => [
+  {
+    description: 'Personal *****gram of Ayaz',
+  },
+];
 
 type LoaderData = { memes: Meme[]; totalMemes: number };
 

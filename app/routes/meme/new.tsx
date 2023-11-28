@@ -21,9 +21,11 @@ import slugify from 'slugify';
 import { getUserId } from '~/utils/session.server';
 import { FormErrorText } from '~/components/FormErrorText';
 
-export const meta: MetaFunction = () => ({
-  title: 'Ayaz-Memster - New Meme',
-});
+export const meta: MetaFunction = () => [
+  {
+    title: 'Ayaz-Memster - New Meme',
+  },
+];
 
 export const links = () => [{ rel: 'stylesheet', href: cropStyles }];
 
