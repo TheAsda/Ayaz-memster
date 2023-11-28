@@ -18,8 +18,8 @@ import { useActionData, useSubmit } from '@remix-run/react';
 import { db } from '~/utils/db.server';
 import { getIsAnimated, getPreview, getWebp } from '~/utils/image.server';
 import slugify from 'slugify';
-import { getUserId } from '~/utils/session.server';
 import { FormErrorText } from '~/components/FormErrorText';
+import { authenticator } from '~/utils/auth.server';
 
 export const meta: MetaFunction = () => [
   {
@@ -81,8 +81,8 @@ export const action: ActionFunction = async ({ request }) => {
     formState.fieldErrors!.name = 'Meme name already exists';
     return json(formState, { status: 400 });
   }
-  const authorId = await getUserId(request);
-  if (!authorId) {
+  const user = await authenticator.isAuthenticated(request);
+  if (!user) {
     return json({ formError: 'You are not logged in' }, { status: 401 });
   }
 
@@ -97,7 +97,7 @@ export const action: ActionFunction = async ({ request }) => {
       preview: await getPreview(fileBuffer, JSON.parse(crop!), isAnimated),
       isAnimated: isAnimated,
       uploadedBy: {
-        connect: { id: authorId },
+        connect: { username: user.username },
       },
     },
   });

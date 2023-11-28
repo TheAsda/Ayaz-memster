@@ -1,4 +1,4 @@
-import { useDropzone } from 'react-dropzone';
+import { useDropzone } from 'react-dropzone-esm';
 import { useImagePaste } from '~/hooks/useImagePaste';
 import { Button } from './Button';
 

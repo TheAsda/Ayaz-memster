@@ -5,7 +5,7 @@ import {
 } from '@heroicons/react/24/outline';
 import type { LoaderFunction, MetaFunction } from '@remix-run/node';
 import { Link, useLoaderData } from '@remix-run/react';
-import { ClientOnly } from 'remix-utils';
+import { ClientOnly } from 'remix-utils/client-only';
 import type { Meme } from '~/types/meme';
 import { db } from '~/utils/db.server';
 

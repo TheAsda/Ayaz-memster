@@ -1,8 +1,10 @@
 import { PrismaClient } from '@prisma/client';
 import { readFile } from 'fs/promises';
-import { join } from 'path';
-import { getHash } from '~/utils/hash.server';
+import { dirname, join } from 'path';
+import { fileURLToPath } from 'url';
 import { getPreview, getWebp } from '~/utils/image.server';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const db = new PrismaClient();
 
@@ -11,22 +13,9 @@ const seed = async () => {
     data: [
       {
         username: 'admin',
-        passwordHash: getHash('admin'),
         canAccess: true,
         canEdit: true,
         isAdmin: true,
-      },
-      {
-        username: 'viewer',
-        passwordHash: getHash('viewer'),
-        canAccess: true,
-        canEdit: false,
-      },
-      {
-        username: 'nikto',
-        passwordHash: getHash('nikto'),
-        canAccess: false,
-        canEdit: false,
       },
     ],
     skipDuplicates: true,

@@ -14,7 +14,7 @@ import app from './styles/app.css';
 import tailwind from './styles/tailwind.css';
 import type { User } from './types/user';
 import { db } from './utils/db.server';
-import { getUserId } from './utils/session.server';
+import { authenticator } from './utils/auth.server';
 
 export function links() {
   return [
@@ -35,13 +35,14 @@ type LoaderData = {
 };
 
 export const loader: LoaderFunction = async ({ request }) => {
-  const userId = await getUserId(request);
-  if (!userId) {
+  const sessionUser = await authenticator.isAuthenticated(request);
+
+  if (sessionUser === null) {
     return { user: undefined };
   }
 
   const user = await db.user.findUnique({
-    where: { id: userId },
+    where: { username: sessionUser.username },
     select: { username: true, canEdit: true, canAccess: true, isAdmin: true },
   });
   if (!user) {

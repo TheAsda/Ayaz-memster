@@ -13,7 +13,8 @@ datasource db {
 model User {
   id           String  @id @default(uuid())
   username     String  @unique
-  passwordHash String
+  email        String? @unique
+  isOnServer   Boolean @default(false)
   canAccess    Boolean @default(false)
   canEdit      Boolean @default(false)
   isAdmin      Boolean @default(false)
