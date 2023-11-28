@@ -15,6 +15,7 @@ import tailwind from './styles/tailwind.css';
 import type { User } from './types/user';
 import { db } from './utils/db.server';
 import { authenticator } from './utils/auth.server';
+import { NotLoggedIn } from './components/NotLoggedIn';
 
 export function links() {
   return [
@@ -73,7 +74,7 @@ export default function App() {
         <NavBar user={user} />
         <main className="flex-grow">
           {user === undefined && location.pathname !== '/login' ? (
-            <div>Not logged in :(</div>
+            <NotLoggedIn />
           ) : (
             <Outlet />
           )}
