@@ -69,6 +69,7 @@ authenticator.use(
             discordId: id,
           },
           data: {
+            username,
             isOnServer,
           },
           select: {
