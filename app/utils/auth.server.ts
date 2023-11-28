@@ -30,18 +30,17 @@ authenticator.use(
       tokenURL: 'https://discord.com/api/oauth2/token',
       clientID: clientId,
       clientSecret: clientSecret,
-      // TODO: change to env
       callbackURL: `${appUrl}/auth/discord`,
-      scope: 'identify email guilds',
+      scope: 'identify guilds',
     },
-    async ({ accessToken, extraParams, profile }) => {
+    async ({ accessToken, extraParams }) => {
       const authorization = `${extraParams.token_type} ${accessToken}`;
-      const { email, username } = await getProfile(authorization);
+      const { id, username } = await getProfile(authorization);
       const isOnServer = await checkServer(authorization);
 
       let user = await db.user.findFirst({
         where: {
-          email: { equals: email },
+          discordId: { equals: id },
         },
         select: {
           username: true,
@@ -53,7 +52,7 @@ authenticator.use(
         user = await db.user.create({
           data: {
             username,
-            email,
+            discordId: id,
             canAccess: true,
             isOnServer: isOnServer,
             canEdit: false,
@@ -67,7 +66,7 @@ authenticator.use(
       } else if (user.isOnServer !== isOnServer) {
         user = await db.user.update({
           where: {
-            email,
+            discordId: id,
           },
           data: {
             isOnServer,
@@ -98,7 +97,7 @@ const getProfile = async (authorization: string) => {
   });
   const data: { id: string; global_name: string; email: string } =
     await res.json();
-  return { email: data.email, username: data.global_name };
+  return { id: data.id, email: data.email, username: data.global_name };
 };
 
 const SERVER_ID = '400230889453518848';
