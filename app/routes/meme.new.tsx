@@ -14,7 +14,7 @@ import {
   unstable_parseMultipartFormData,
 } from '@remix-run/node';
 import type { Crop } from 'react-image-crop';
-import { useActionData, useSubmit } from '@remix-run/react';
+import { useActionData, useNavigation, useSubmit } from '@remix-run/react';
 import { db } from '~/utils/db.server';
 import { getIsAnimated, getPreview, getWebp } from '~/utils/image.server';
 import slugify from 'slugify';
@@ -123,6 +123,9 @@ export default function NewMeme() {
     submit(formData, { method: 'post', encType: 'multipart/form-data' });
   };
 
+  const navigation = useNavigation();
+  const isSubmitting = navigation.formAction === '/meme/new';
+
   return (
     <form
       method="POST"
@@ -157,7 +160,9 @@ export default function NewMeme() {
         <FormErrorText>{formState?.fieldErrors?.file}</FormErrorText>
       </FormControl>
       <FormErrorText>{formState?.formError}</FormErrorText>
-      <Button type="submit">Create</Button>
+      <Button type="submit" data-loading={isSubmitting} disabled={isSubmitting}>
+        Create
+      </Button>
     </form>
   );
 }

@@ -2,7 +2,11 @@
 module.exports = {
   content: ['./app/**/*.{js,ts,jsx,tsx,css}'],
   theme: {
-    extend: {},
+    extend: {
+      data: {
+        loading: 'loading~="true"',
+      },
+    },
   },
   plugins: [],
 };

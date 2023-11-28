@@ -7,7 +7,7 @@ export const Button = (props: ComponentPropsWithoutRef<'button'>) => {
       {...props}
       className={clsx(
         props.className,
-        'p-1 rounded-sm bg-purple-800 text-white'
+        'p-1 rounded-sm bg-purple-800 text-white data-loading:bg-purple-400 data-loading:cursor-wait'
       )}
     />
   );
